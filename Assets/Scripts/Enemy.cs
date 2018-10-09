@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     private float latestDirectionChangeTime;
-    private readonly float directionChangeTime = 3f;
-    private float characterVelocity = 10f;
+    private readonly float directionChangeTime = 5f;
+    private float characterVelocity = 5f;
     private Vector2 movementDirection;
     private Vector2 movementPerSecond;
 
@@ -17,14 +17,13 @@ public class Enemy : MonoBehaviour {
     }
 
     void calcuateNewMovementVector() {
-        //create a random direction vector with the magnitude of 1, later multiply it with the velocity of the enemy
         movementDirection = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
         movementPerSecond = movementDirection * characterVelocity;
     }
 
     void Update() {
-        //if the changeTime was reached, calculate a new movement vector
-        if (Time.time - latestDirectionChangeTime > directionChangeTime) {
+        //if (Time.time - latestDirectionChangeTime > directionChangeTime) {
+        if ((transform.position.x > 30 || transform.position.x < -30) || (transform.position.y > 20 || transform.position.x < -20)) {
             latestDirectionChangeTime = Time.time;
             calcuateNewMovementVector();
         }

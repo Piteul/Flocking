@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AllUnits : MonoBehaviour {
 
@@ -9,9 +10,13 @@ public class AllUnits : MonoBehaviour {
     public int numUnits = 10;
     public Vector3 range = new Vector3(5, 5, 5);
 
-    public bool seekGoal = true;
-    public bool obedient = true;
-    public bool willful = false;
+    public Toggle t_Objectif;
+    public Toggle t_Obeissant;
+    public Toggle t_Tetu;
+
+    public bool chercherObjectif;
+    public bool obeissant;
+    public bool tetu;
 
     [Range(0, 200)]
     public int neighbourDistance = 50;
@@ -26,6 +31,33 @@ public class AllUnits : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+
+        if (t_Objectif.isOn) {
+
+            chercherObjectif = true;
+        }
+        else {
+            chercherObjectif = false;
+        }
+
+        if (t_Obeissant.isOn) {
+
+            chercherObjectif = true;
+        }
+        else {
+            obeissant = false;
+        }
+
+        if (t_Tetu.isOn) {
+
+            tetu = true;
+        }
+        else {
+            tetu = false;
+        }
+
+
+
         units = new GameObject[numUnits];
 
         for (int i = 0; i < numUnits; i++) {
@@ -40,7 +72,29 @@ public class AllUnits : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (t_Objectif.isOn) {
 
+            chercherObjectif = true;
+        }
+        else {
+            chercherObjectif = false;
+        }
+
+        if (t_Obeissant.isOn) {
+
+            chercherObjectif = true;
+        }
+        else {
+            obeissant = false;
+        }
+
+        if (t_Tetu.isOn) {
+
+            tetu = true;
+        }
+        else {
+            tetu = false;
+        }
     }
 
     private void OnDrawGizmosSelected() {

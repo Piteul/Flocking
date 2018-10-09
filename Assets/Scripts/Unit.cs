@@ -91,12 +91,12 @@ public class Unit : MonoBehaviour {
         location = this.transform.position;
         velocity = this.GetComponent<Rigidbody2D>().velocity;
 
-        if (manager.GetComponent<AllUnits>().obedient && Random.Range(0, 50) <= 1) {
+        if (manager.GetComponent<AllUnits>().obeissant && Random.Range(0, 50) <= 1) {
             Vector2 ali = align();
             Vector2 coh = cohesion();
             Vector2 gl;
 
-            if (manager.GetComponent<AllUnits>().seekGoal) {
+            if (manager.GetComponent<AllUnits>().chercherObjectif) {
                 gl = seek(goalPos);
                 currentForce = gl + ali + coh;
             }
@@ -106,7 +106,7 @@ public class Unit : MonoBehaviour {
             // Ce qui permet d'avoir une norme de direction en fonction de la distance
             currentForce = currentForce.normalized;
         }
-        if (manager.GetComponent<AllUnits>().willful && Random.Range(0, 50) <= 1) {
+        if (manager.GetComponent<AllUnits>().tetu && Random.Range(0, 50) <= 1) {
 
             if (Random.Range(0, 50) < 1) //change direction
                 currentForce = new Vector2(Random.Range(0.01f, 0.1f), Random.Range(0.01f, 0.01f));
@@ -114,11 +114,13 @@ public class Unit : MonoBehaviour {
         applyForce(currentForce);
     }
 
-// Update is called once per frame
-void Update() {
-    flock();
-    goalPos = manager.transform.position;
-}
+    // Update is called once per frame
+    void Update() {
+        flock();
+        goalPos = manager.transform.position;
+
+        transform.up = gameObject.GetComponent<Rigidbody2D>().velocity;
+    }
 }
 
 
